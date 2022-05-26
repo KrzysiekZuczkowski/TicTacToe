@@ -1,0 +1,24 @@
+plugins {
+    id 'java'
+    id 'application'
+    id 'org.openjfx.javafxplugin' version '0.0.8'
+}
+
+javafx {
+    version = "11.0.2"
+    modules = [ 'javafx.controls' ]
+}
+
+group 'com.game'
+version '1.0-SNAPSHOT'
+mainClassName = 'com.game.tictactoe.TicTacToe'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+}
+
+test {
+}
