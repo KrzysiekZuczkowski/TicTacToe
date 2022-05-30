@@ -26,7 +26,12 @@ import static java.util.stream.Collectors.toList;
 
 public class TicTacToe extends Application {
 
-    private final String[] gameFigures = new String[]{"x", "o"};
+
+    private static final String[] GAME_FIGURES = new String[]{"x", "o"};
+    private static final String X_WIN = GAME_FIGURES[0] + GAME_FIGURES[0] + GAME_FIGURES[0];
+    private static final String O_WIN = GAME_FIGURES[1] + GAME_FIGURES[1] + GAME_FIGURES[1];
+
+
     private String playerFigure;
     private boolean playerTurn = true;
     private boolean gameOver = false;
@@ -72,7 +77,7 @@ public class TicTacToe extends Application {
         playerTurn = false;
         button.setText(getPlayerFigure());
         button.setFont(new Font(0));
-        if(playerFigure.equals(gameFigures[0]))
+        if(playerFigure.equals(GAME_FIGURES[0]))
             button.setBackground(buttX);
         else
             button.setBackground(buttO);
@@ -105,8 +110,8 @@ public class TicTacToe extends Application {
     public void  checkGameFlow(String gameFlow, int rowColNumber) {
         int numberOfXAndO = getNumberOfXAndO(gameFlow);
         boolean needToCheck = numberOfXAndO > 4;
-        String playerPlaysFigures = getPlayerFigure().equals(gameFigures[0]) ? "xxx" : "ooo";
-        String computerPlaysFigures = getPlayerFigure().equals(gameFigures[0]) ? "ooo" : "xxx";
+        String playerPlaysFigures = getPlayerFigure().equals(GAME_FIGURES[0]) ? X_WIN : O_WIN;
+        String computerPlaysFigures = getPlayerFigure().equals(GAME_FIGURES[0]) ? O_WIN : X_WIN;
 
         if(needToCheck) {
             int i = 0, k = 2 * rowColNumber;
@@ -165,9 +170,9 @@ public class TicTacToe extends Application {
 
     public void computerMove(Button button) {
         playerTurn = true;
-        button.setText(getPlayerFigure().equals(gameFigures[0]) ? gameFigures[1] : gameFigures[0]);
+        button.setText(getPlayerFigure().equals(GAME_FIGURES[0]) ? GAME_FIGURES[1] : GAME_FIGURES[0]);
         button.setFont(new Font(0));
-        button.setBackground(getPlayerFigure().equals(gameFigures[0]) ? buttO: buttX);
+        button.setBackground(getPlayerFigure().equals(GAME_FIGURES[0]) ? buttO: buttX);
         button.setOnAction((e) -> {
         });
     }
@@ -214,7 +219,7 @@ public class TicTacToe extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
-        setPlayerFigure(gameFigures[0]);
+        setPlayerFigure(GAME_FIGURES[0]);
 
         GridPane grid = new GridPane();
         int rowCol = 3;
